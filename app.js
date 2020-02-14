@@ -1,14 +1,20 @@
 var mqtt = require('mqtt')
+const fs = require('fs')
 const option = {
     username: 'admin',
-
     password: '123qwe!@#',
-    port: 1883,
-    host: '172.30.67.117'
+    ca: fs.readFileSync('./SSL/SSL_SAMPLE/cacert.pem'), key: fs.readFileSync('./SSL/SSL_SAMPLE/client-key.pem'), cert: fs.readFileSync('./SSL/SSL_SAMPLE/client-cert.pem'),
+    protocol: 'mqtts',
+    secureProtocol: 'TLSv1_2_method',
+    port: 8899,
+    host: '127.0.0.1',
+    rejectUnauthorized: false,
+    clientId: 'MQTT CLIENT',
+    protocolVersion: 4
 }
 
 
-const client = mqtt.connect('mqtt://172.30.67.117:1883', option)
+const client = mqtt.connect('mqtt://127.0.0.1', option)
 client.on('connect', function () {
   client.subscribe('presence', function (err) {
     if (!err) {
