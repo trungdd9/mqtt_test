@@ -7,14 +7,14 @@ const option = {
     protocol: 'mqtts',
     secureProtocol: 'TLSv1_2_method',
     port: 8899,
-    host: '127.0.0.1',
+    host: '172.30.67.117',
     rejectUnauthorized: false,
     clientId: 'MQTT CLIENT',
     protocolVersion: 4
 }
 
 
-const client = mqtt.connect('mqtt://127.0.0.1', option)
+const client = mqtt.connect('mqtt://172.30.67.117', option)
 client.on('connect', function () {
   client.subscribe('presence', function (err) {
     if (!err) {
